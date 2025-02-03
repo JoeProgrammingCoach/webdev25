@@ -1,0 +1,14 @@
+#weatherworldicon {
+   max-width: 15%;
+   height: auto;
+}
+
+.fivedaydisplay {
+   height: 100 rem;
+   width: auto;
+
+}
+
+#background {
+   background-color: #41236a;
+}
