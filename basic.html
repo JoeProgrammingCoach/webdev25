@@ -14,8 +14,15 @@
    <h1>Welcome to Weather World!</h1>
    <label for="name">Type in a zip, town or city:</label>
 
-   <input type="text" id="cityName" name="cityName" required minlength="4" maxlength="20" size="20" />
-
+   <input type="text" id="cityName" name="cityName" required minlength="4" maxlength="30" size="20" />
+   <br>
+   <input type="radio" id="Fahrenheit" name="units" value="f">
+     <label for="html">Fahrenheit</label><br>
+     <input type="radio" id="css" name="units" value="c">
+     <label for="css">Celsius</label><br>
 </body>
+<div>
+   <h1>Your five day forecast for ${cityName} is:</h1>
+</div>
 
 </html>
