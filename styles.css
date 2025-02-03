@@ -12,3 +12,15 @@
 #background {
    background-color: #41236a;
 }
+
+.yellowfont {
+   color: yellow
+}
+
+.greenfont {
+   color: lightgreen
+}
+
+.inlinedisplay {
+   display: none;
+}
