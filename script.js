@@ -3,13 +3,12 @@ let searchquery = "";
 let hasSearched = false;
 let currentWeatherBox = document.getElementById('currentWeather');
 let forecastCityName = document.getElementById("forecastCityName");
-let unit = "imperial";
+let unit = "imperial"; // Default to imperial units
 let searchForCity;
 
 document.getElementById("submit").onclick = (e) => {
    e.preventDefault();
-   searchForCity =
-      document.getElementById('cityName').value;
+   searchForCity = document.getElementById('cityName').value;
    console.log("submit button was clicked");
    console.log("You want weather for " + searchForCity);
    hasSearched = true;
@@ -18,28 +17,56 @@ document.getElementById("submit").onclick = (e) => {
 }
 
 let fTempChecked = document.getElementById("Fahrenheit");
-let cTempChecked = document.getElementById("Celsius");
+let cTempChecked = documentgetElementById("Celsius");
+
+// Event listeners for unit changes
+fTempChecked.addEventListener('change', () => {
+   unit = fTempChecked.checked ? 'imperial' : 'metric'; // Set unit based on selection
+   if (hasSearched) { // Refetch data if a search has already been performed
+      fetchWeatherData();
+   }
+});
+
+cTempChecked.addEventListener('change', () => {
+   unit = cTempChecked.checked ? 'metric' : 'imperial'; // Set unit based on selection
+   if (hasSearched) { // Refetch data if a search has already been performed
+      fetchWeatherData();
+   }
+});
+
 
 function fetchWeatherData() {
    const apiKey = '7dc4703261b08dae5a9e117c8eed5831';
-   const fiveDayForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchForCity}&units=${unit}&appid=${apiKey}`;
+   const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchForCity}&units=${unit}&appid=${apiKey}`; // Use current weather API
 
-   fetch(fiveDayForecastUrl)
+   fetch(currentWeatherUrl) // Fetch from the current weather API
       .then(response => response.json())
-      .then(forecastData => {
+      .then(currentWeatherData => {  // Rename to currentWeatherData for clarity
+         console.log("Current weather data:", currentWeatherData);
 
-         const forecastItems = forecastData.list
-            .filter((_, index) => index)
-            .map((item, index) => ({
-               _id: `day-${index}`,
-               date: new Date(item.dt * 1000).toLocaleDateString(),
-               temp: `${Math.round(item.main.temp)}`,
-               icon: `http://openweathermap.org/img/w/${item.weather[0].icon}.png`,
-               description: item.weather[0].description,
+         if (currentWeatherData.cod === "404") { // Handle city not found error
+            currentWeatherBox.innerText = "City not found.";
+            return; // Stop further processing
+         }
 
-            }));
-         currentWeatherBox.innerText = "Here is the data" + JSON.stringify(forecastItems)
+         const temperature = Math.round(currentWeatherData.main.temp);
+         const description = currentWeatherData.weather[0].description;
+         const iconCode = currentWeatherData.weather[0].icon;
+         const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
 
-         console.log("data in forecast Items " + JSON.stringify(forecastItems));
+         // Construct the HTML content
+         let currentWeatherHTML = `
+                <img src="${iconUrl}" alt="${description}">
+                <p>Temperature: ${temperature}°${unit === 'imperial' ? 'F' : 'C'}</p>
+                <p>Description: ${description}</p>
+                
+            `;
+
+         currentWeatherBox.innerHTML = currentWeatherHTML; // Use innerHTML
+
       })
+      .catch(error => {
+         console.error("Error fetching weather data:", error);
+         currentWeatherBox.innerText = "Error fetching weather data.";
+      });
 }
