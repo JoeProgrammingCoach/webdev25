@@ -19,7 +19,8 @@
    </div>
    <label for="name" class="yellowfont">Type in a zip, town or city:</label>
 
-   <input type="text" id="cityName" name="cityName" required minlength="3" maxlength="30" size="20" />
+   <input placeholder="city or zip" type="text" id="cityName" name="cityName" required minlength="3" maxlength="30"
+      size="20" />
    <button id="submit">submit</button>
    <label class="yellowfont">Save as favorite for next time</label>
    <input type="checkbox">
@@ -27,12 +28,12 @@
    <span class="displayinline">
       <input type="radio" id="Fahrenheit" name="units" value="f" checked>
         <label for="html" class="greenfont">Fahrenheit</label><br>
-        <input type="radio" id="css" name="units" value="c">
+        <input type="radio" id="Celsius" name="units" value="c">
         <label for="css" class="greenfont">Celsius</label><br>
    </span>
    <div>
 
-      <h2 class="greenfont">Your five day forecast for ${cityName} is:</h2>
+      <h2 class="greenfont">Your five day forecast for <span id="forecastCityName"></span> is:</h2>
    </div>
    <script src="script.js"></script>
 </body>
