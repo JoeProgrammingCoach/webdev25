@@ -17,7 +17,7 @@
    <div>
       <h1 class="yellowfont">Welcome to Weather World!</h1> <img src="weatherworld.png" id="weatherworldicon">
    </div>
-   <label for="name" class="yellowfont">Type in a zip, town or city:</label>
+   <label for="cityName" class="yellowfont">Type in a zip, town or city:</label>
 
    <input placeholder="city or zip" type="text" id="cityName" name="cityName" required minlength="3" maxlength="30"
       size="20" />
@@ -32,9 +32,17 @@
         <input type="radio" id="Celsius" name="units" value="c">
         <label for="Celsius" class="greenfont">Celsius</label><br>
    </span>
+   <span id="currentWeather">
+
+   </span>
+
    <div>
 
       <h2 class="greenfont">Your five day forecast for <span id="forecastCityName"></span> is:</h2>
+      <span id="fiveDayForecastContainer">
+
+      </span>
+
    </div>
    <script src="script.js"></script>
 </body>
