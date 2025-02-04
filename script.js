@@ -17,7 +17,7 @@ document.getElementById("submit").onclick = (e) => {
 }
 
 let fTempChecked = document.getElementById("Fahrenheit");
-let cTempChecked = documentgetElementById("Celsius");
+let cTempChecked = document.getElementById("Celsius");
 
 // Event listeners for unit changes
 fTempChecked.addEventListener('change', () => {
@@ -44,21 +44,16 @@ function fetchWeatherData() {
       .then(currentWeatherData => {  // Rename to currentWeatherData for clarity
          console.log("Current weather data:", currentWeatherData);
 
-         if (currentWeatherData.cod === "404") { // Handle city not found error
-            currentWeatherBox.innerText = "City not found.";
-            return; // Stop further processing
-         }
-
          const temperature = Math.round(currentWeatherData.main.temp);
-         const description = currentWeatherData.weather[0].description;
          const iconCode = currentWeatherData.weather[0].icon;
          const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
 
          // Construct the HTML content
          let currentWeatherHTML = `
-                <img src="${iconUrl}" alt="${description}">
-                <p>Temperature: ${temperature}°${unit === 'imperial' ? 'F' : 'C'}</p>
-                <p>Description: ${description}</p>
+                
+               <p>Tuesday</p>
+                <p>${temperature}°${unit === 'imperial' ? 'F' : 'C'}</p>
+                
                 
             `;
 
