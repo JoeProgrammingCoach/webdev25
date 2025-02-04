@@ -27,13 +27,9 @@ function fetchWeatherData() {
    fetch(fiveDayForecastUrl)
       .then(response => response.json())
       .then(forecastData => {
-         // Find today's forecast (assuming it's the first item in the list)
-         //const currentDayForecast = forecastData.list[0];
-         console.log(forecastData);
-
 
          const forecastItems = forecastData.list
-            .filter((_, index) => index % 8 === 0) // Filter daily forecasts
+            .filter((_, index) => index)
             .map((item, index) => ({
                _id: `day-${index}`,
                date: new Date(item.dt * 1000).toLocaleDateString(),
@@ -42,8 +38,8 @@ function fetchWeatherData() {
                description: item.weather[0].description,
 
             }));
-         // currentWeatherBox.innerText = 
+         currentWeatherBox.innerText = "Here is the data" + JSON.stringify(forecastItems)
 
-         console.log("data in forecast Items " + JSON.stringify(forecastItems))
+         console.log("data in forecast Items " + JSON.stringify(forecastItems));
       })
 }
