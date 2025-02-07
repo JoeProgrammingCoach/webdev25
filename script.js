@@ -5,6 +5,7 @@ let currentWeatherBox = document.getElementById('currentWeather');
 let forecastCityName = document.getElementById("forecastCityName");
 let unit = "imperial"; // Default to imperial units
 let searchForCity;
+favoriteModal = document.querySelector('.favoriteCityModal');
 
 document.getElementById("submit").onclick = (e) => {
    e.preventDefault();
@@ -14,6 +15,7 @@ document.getElementById("submit").onclick = (e) => {
    hasSearched = true;
    forecastCityName.innerText = searchForCity;
    fetchWeatherData();
+   favoriteModal.style.display = "block";
 }
 
 let fTempChecked = document.getElementById("Fahrenheit");
@@ -65,3 +67,5 @@ function fetchWeatherData() {
          currentWeatherBox.innerText = "Error fetching weather data.";
       });
 }
+
+
