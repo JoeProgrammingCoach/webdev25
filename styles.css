@@ -36,8 +36,10 @@
 .displayFavoriteCityModal {
    display: block;
    position: fixed;
+   margin-top: -5%;
+   margin-right: 30%;
    width: 20%;
-   height: 20%;
+   height: 15%;
    background-color: yellow;
    z-index: 3;
    padding: 10px;
