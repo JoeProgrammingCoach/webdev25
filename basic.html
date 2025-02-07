@@ -22,10 +22,16 @@
    <input placeholder="city or zip" type="text" id="cityName" name="cityName" required minlength="3" maxlength="30"
       size="20" />
    <button id="submit">submit</button>
+
+   <div class="displayFavoriteCityModal">
+      <span>Save as favorite city for next time?</span>
+      <label for="submit" class="yellowfont">Save as favorite for next time</label>
+      <input type="checkbox"> <span class="x">X</span>
+   </div>
+
    <br>
-   <label for="submit" class="yellowfont">Save as favorite for next time</label>
-   <input type="checkbox">
-   <br>
+
+
    <span class="displayinline">
       <input type="radio" id="Fahrenheit" name="units" value="f" checked>
         <label for="Fahrenheit" class="greenfont">Fahrenheit</label><br>
